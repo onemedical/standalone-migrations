@@ -113,7 +113,7 @@ test:
     end
 
     it "generates a new migration with this name from ENV and timestamp" do
-      run("rake db:new_migration name=test_abc_env").should =~ %r{create(.*)db/migrate/\d+_test_abc_env\.rb}
+      run("rake db:new_migration name=test_abc_env --trace").should =~ %r{create(.*)db/migrate/\d+_test_abc_env\.rb}
       run("ls db/migrate").should =~ /^\d+_test_abc_env.rb$/
     end
     
