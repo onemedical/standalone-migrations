@@ -16,7 +16,7 @@ module StandaloneMigrations
       return if current_migration_dir == default_migrate_dir
 
       Dir.glob("#{default_migrate_dir}/*_#{name}.rb").each do |migration|
-        new_path = File.join(current_migration_dir, migration)
+        new_path = File.join(current_migration_dir, File.basename(migration))
         begin
           if migration_exists?(name, new_path)
             raise "A migration already exists by the name of #{name}"+
