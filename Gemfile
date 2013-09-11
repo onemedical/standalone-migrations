@@ -7,6 +7,8 @@ gem 'railties', ENV['AR'] || '~> 3.2.13'
 group :dev do
   gem 'sqlite3'
   gem 'rspec', '~>2'
+  gem 'rspec-mocks'
+  gem 'rspec-mocks-extensions'
   gem 'jeweler'
 end
 
