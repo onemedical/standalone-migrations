@@ -23,14 +23,15 @@ module StandaloneMigrations
       end
 
       it "moves migrations when they don't already exist" do
-        Generator.stub(:migration_exists?).
+        Generator.should_receive(:migration_exists?).
             with(test_migration_name, test_migration_file).
             and_return(false)
+        Generator.should_receive(:create_db_path)
         Generator.send(:move_migration, test_migration_name)
       end
 
       it "raises an error when a migration already exists" do
-        Generator.stub(:migration_exists?).
+        Generator.should_receive(:migration_exists?).
             with(test_migration_name, test_migration_file).
             and_return(true)
         -> {Generator.send(:move_migration, test_migration_name)}.

@@ -22,6 +22,7 @@ module StandaloneMigrations
             raise "A migration already exists by the name of #{name}"+
                       " for the DB source #{ENV['SOURCE']}"
           else
+            create_db_path
             FileUtils.mv migration, new_path
           end
         ensure
@@ -49,5 +50,9 @@ module StandaloneMigrations
       false
     end
     private_class_method :migration_exists?
+
+    def self.create_db_path
+      FileUtils.mkdir_p current_migration_dir
+    end
   end
 end
